@@ -1,0 +1,16 @@
+/node_modules
+**/*.js
+**/*.json
+**/*.css
+**/*.svg
+**/*.md
+**/*.html
+**/*.png
+**/*.gif
+**/*.txt
+**/*.ico
+6
+reportWebVitals.ts
+setupTests.ts
+react-app-env.d.ts
+.eslintrc.js
