@@ -32,4 +32,4 @@ jobs:
           cd ../frontend
     - name: lint
       run: |
-          npx eslint '**/*.{ts,tsx}' --fix
+          npx eslint '**' --fix
