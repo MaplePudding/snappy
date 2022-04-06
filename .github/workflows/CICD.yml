@@ -31,6 +31,4 @@ jobs:
           npm i
           cd ..
     - name: lint
-      run: |
-          cd ./frontend
-          npm run eslint
+      uses: mrdivyansh/eslint-action@v1.0.7
