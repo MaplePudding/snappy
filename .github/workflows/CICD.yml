@@ -32,4 +32,5 @@ jobs:
           cd ..
     - name: lint
       run: |
-          npx eslint ** --fix
+          cd ./frontend
+          npm run eslint
