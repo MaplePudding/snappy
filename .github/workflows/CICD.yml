@@ -31,4 +31,5 @@ jobs:
           npm i
           cd ../frontend
     - name: lint
-      uses: mrdivyansh/eslint-action@v1.0.7
+      run: |
+          npx eslint '**/*.{ts,tsx}' --fix
