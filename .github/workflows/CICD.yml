@@ -24,11 +24,11 @@ jobs:
     - name: bootstrap
       run: |
           npm i  
-          cd ./frontend  # 执行打包
+          cd ./frontend  
           npm i
           cd ..
           cd ./backend
           npm i
-          cd ..
+          cd ../frontend
     - name: lint
       uses: mrdivyansh/eslint-action@v1.0.7
