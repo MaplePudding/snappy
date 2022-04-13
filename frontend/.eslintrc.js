@@ -32,7 +32,9 @@ module.exports = {
   ],
   rules: {
     'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
-    "prettier/prettier": "error",
+      "prettier/prettier": ["error",   {
+        'endOfLine': 'auto',
+      }],
     "import/prefer-default-export": "off",
     "no-underscore-dangle":  'off',
     'object-curly-newline': 'off',
