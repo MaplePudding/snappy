@@ -33,3 +33,16 @@ jobs:
         run: |
           cd ./frontend
           npx eslint '**' --fix
+      - name: build
+        run: |
+          cd ./frontend
+          npm run build
+      - name: deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ALI_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: "frontend/build"
+          REMOTE_HOST: ${{ secrets.ALI_HOST }}
+          REMOTE_USER: "root"
+          TARGET: "/snappy/frontend"
