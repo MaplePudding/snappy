@@ -16,9 +16,15 @@ export function Contact({
   useEffect(() => {
     const data = JSON.parse(
       // @ts-ignore
-      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY) ? localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY) : {},
+      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+          // @ts-ignore
+          ? localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+          // @ts-ignore
+          : {},
     );
+    // @ts-ignore
     setCurrentUserName(data?.username);
+    // @ts-ignore
     setCurrentUserImage(data?.avatarImage);
   }, []);
   // @ts-ignore
