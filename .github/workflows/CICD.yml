@@ -33,11 +33,15 @@ jobs:
         run: |
           cd ./frontend
           npx eslint '**' --fix
-      - name: build
+      - name: build frontend
         run: |
           cd ./frontend
           npm run build
-      - name: deploy
+      - name: build backend
+        run: |
+          cd ./backend
+          npm run build
+      - name: deploy frontend
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ALI_KEY }}
@@ -46,7 +50,25 @@ jobs:
           REMOTE_HOST: ${{ secrets.ALI_HOST }}
           REMOTE_USER: "root"
           TARGET: "/snappy/frontend"
-      - name: reboot
+      - name: deploy backend
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ALI_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: "backend/dist"
+          REMOTE_HOST: ${{ secrets.ALI_HOST }}
+          REMOTE_USER: "root"
+          TARGET: "/snappy/backend"
+      - name: reboot node server
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            pm2 stop snappyServer
+            pm2 start /snappy/backend/dist/bundle.min.js -n snappyServer
+          host: ${{ secrets.ALI_HOST }}
+          user: root
+          key: ${{ secrets.ALI_KEY }}
+      - name: reboot nginx
         uses: fifsky/ssh-action@master
         with:
           command: |

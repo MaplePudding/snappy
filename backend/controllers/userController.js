@@ -1,5 +1,5 @@
 const User = require('../model/userModel')
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 
 module.exports.login = async (ctx, next) =>{
     const {username, password} = ctx.request.body
@@ -7,7 +7,7 @@ module.exports.login = async (ctx, next) =>{
     if(!user){
         return ctx.body = JSON.stringify({msg: "Incorrect username or password", status: false})
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password)
+    const isPasswordValid = await bcrypt.compareSync(password, user.password)
     if(!isPasswordValid){
         return ctx.body = JSON.stringify({msg: "Incorrect username or password", status: false})
     }
