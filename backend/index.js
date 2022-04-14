@@ -24,7 +24,9 @@ app.use(userRouter.routes()).use(userRouter.allowedMethods());
 
 
 
-app.listen(process.env.port)
+app.listen(process.env.PORT)
+
+console.log(`listen ${process.env.PORT}`)
 
 const io = socket(5001, {
     cors: true,
