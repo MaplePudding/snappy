@@ -30,7 +30,7 @@ console.log(`listen ${process.env.PORT}`)
 
 const io = socket(5001, {
     cors: true,
-    origin: ["http://127.0.0.1:3000"],
+    origin: ["http://47.117.127.171:1233"],
     credentials: true
 })
 
