@@ -35,6 +35,7 @@ module.exports = {
       "prettier/prettier": ["error",   {
         'endOfLine': 'auto',
       }],
+    "indent": 'off',
     "import/prefer-default-export": "off",
     "no-underscore-dangle":  'off',
     'object-curly-newline': 'off',
