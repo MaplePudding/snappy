@@ -46,3 +46,11 @@ jobs:
           REMOTE_HOST: ${{ secrets.ALI_HOST }}
           REMOTE_USER: "root"
           TARGET: "/snappy/frontend"
+      - name: reboot
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            systemctl restart nginx
+          host: ${{ secrets.ALI_HOST }}
+          user: root
+          key: ${{ secrets.ALI_KEY }}
