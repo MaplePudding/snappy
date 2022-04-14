@@ -16,10 +16,10 @@ export function Contact({
   useEffect(() => {
     const data = JSON.parse(
       // @ts-ignore
-      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY),
+      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY) ? localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY) : {},
     );
-    setCurrentUserName(data.username);
-    setCurrentUserImage(data.avatarImage);
+    setCurrentUserName(data?.username);
+    setCurrentUserImage(data?.avatarImage);
   }, []);
   // @ts-ignore
   const changeCurrentChat = (index, contact) => {
