@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 import React, { useEffect, useState } from 'react';
 import { Buffer } from 'buffer';
 import { toast, ToastContainer, ToastOptions } from 'react-toastify';
-// @ts-ignore
 import axios from 'axios';
 import styles from './avatar.module.css';
 import Loader from '../assets/loader.gif';
@@ -62,14 +61,21 @@ export function Avatar() {
   useEffect(() => {
     // @ts-ignore
     const data = [];
-    for (let i = 0; i < 4; i += 1) {
-      axios.get(`${api}/${Math.round(Math.random() * 1000)}`).then((image:any) => {
-        const buffer = Buffer.from(image.data);
-        data.push(buffer.toString('base64'));
-      });
+    const allRequest = []
+
+    for(let i = 0; i < 4; ++i){
+      allRequest.push(axios.get(`${api}/${Math.round(Math.random() * 10)}`))
     }
-    // @ts-ignore
-    setAvatars(data);
+
+    Promise.all(allRequest).then((arr) => {
+      for(let item of arr){
+        const buffer = Buffer.from(item.data)
+        data.push(buffer.toString('base64'));
+      }
+      // @ts-ignore
+      setAvatars(data)
+    })
+
     setIsLoading(false);
   }, []);
 
