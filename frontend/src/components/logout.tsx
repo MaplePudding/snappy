@@ -8,7 +8,7 @@ import { logoutRoute } from '../utils/APIRoutes';
 export function Logout() {
   const navigate = useNavigate();
   const handleClick = async () => {
-    const id = await JSON.parse(
+    const id = JSON.parse(
       // @ts-ignore
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY),
     )._id;

@@ -1,11 +1,12 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { loginRoute } from '../utils/APIRoutes';
+// import axios from 'axios';
+// import { loginRoute } from '../utils/APIRoutes';
 import Logo from '../assets/logo.svg';
 import styles from './login.module.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { apiLogin } from '../http/api';
 
 export function Login() {
   const navigate = useNavigate();
@@ -45,10 +46,8 @@ export function Login() {
     event.preventDefault();
     if (validateForm()) {
       const { username, password } = values;
-      const { data } = await axios.post(loginRoute, {
-        username,
-        password,
-      });
+      const data = await apiLogin({ username, password });
+
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
       }

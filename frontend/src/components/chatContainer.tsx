@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import axios from 'axios';
 import styles from './chatContainer.module.css';
-import { recieveMessageRoute, sendMessageRoute } from '../utils/APIRoutes';
 import { Logout } from './logout';
 import { ChatInput } from './chatInput';
+import { apiAddMsg, apiGetMsg } from '../http/api';
 
 export function ChatContainer({
   currentChat,
@@ -23,12 +22,13 @@ export function ChatContainer({
       // @ts-ignore
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY),
     );
-    axios
-      .post(recieveMessageRoute, {
-        from: data._id,
-        to: currentChat._id,
-      })
-      .then((res) => setMessages(res.data));
+
+    apiGetMsg({ from: data._id, to: currentChat._id })
+      // @ts-ignore
+      .then((msgs) => {
+        // @ts-ignore
+        setMessages(msgs);
+      });
   }, [currentChat]);
 
   // useEffect(() => {
@@ -44,8 +44,8 @@ export function ChatContainer({
   //  getCurrentChat();
   // }, [currentChat]);
   // @ts-ignore
-  const handleSendMsg = async (msg) => {
-    const data = await JSON.parse(
+  const handleSendMsg = (msg) => {
+    const data = JSON.parse(
       // @ts-ignore
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY),
     );
@@ -54,11 +54,7 @@ export function ChatContainer({
       from: data._id,
       msg,
     });
-    await axios.post(sendMessageRoute, {
-      from: data._id,
-      to: currentChat._id,
-      message: msg,
-    });
+    apiAddMsg({ from: data._id, to: currentChat._id, message: msg });
 
     const msgs = [...messages];
     // @ts-ignore

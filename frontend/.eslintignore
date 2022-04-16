@@ -10,6 +10,7 @@ node_modules
 **/*.txt
 **/*.ico
 6
+build
 reportWebVitals.ts
 setupTests.ts
 react-app-env.d.ts

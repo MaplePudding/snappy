@@ -6,6 +6,7 @@ import axios from 'axios';
 import styles from './avatar.module.css';
 import Loader from '../assets/loader.gif';
 import { setAvatarRoute } from '../utils/APIRoutes';
+import {apiSetAvatar} from "../http/api";
 
 export function Avatar() {
   const api = 'https://api.multiavatar.com/4645646';
@@ -39,9 +40,7 @@ export function Avatar() {
         localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY),
       );
 
-      const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
-        image: avatars[selectedAvatar],
-      });
+      const data = await apiSetAvatar({userId: user._id, image: avatars[selectedAvatar]});
 
       if (data.isSet) {
         user.isAvatarImageSet = true;

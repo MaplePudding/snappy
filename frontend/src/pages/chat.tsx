@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { io } from 'socket.io-client';
-import axios from 'axios';
-import { allUsersRoute, wsHost } from '../utils/APIRoutes';
+import { wsHost } from '../utils/APIRoutes';
 import styles from './chat.module.css';
 import { Contact } from '../components/contact';
 import { Welcome } from '../components/welcome';
 import { ChatContainer } from '../components/chatContainer';
+import { apiGetAllUser } from '../http/api';
 
 export function Chat() {
   const navigate = useNavigate();
@@ -42,10 +42,10 @@ export function Chat() {
     if (currentUser) {
       // @ts-ignore
       if (currentUser.isAvatarImageSet) {
-        axios
+        // @ts-ignore
+        apiGetAllUser(currentUser._id)
           // @ts-ignore
-          .get(`${allUsersRoute}/${currentUser._id}`)
-          .then((data) => setContacts(data.data));
+          .then((data) => setContacts(data));
       } else {
         navigate('/avatar');
       }

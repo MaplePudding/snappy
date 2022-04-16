@@ -31,7 +31,7 @@ export function Contact({
 
   return (
     <div>
-      {currentUserImage && currentUserImage && (
+      {
         <div className={styles.container}>
           <div className={styles.brand}>
             <img src={Logo} alt="logo" />
@@ -76,7 +76,7 @@ export function Contact({
             </div>
           </div>
         </div>
-      )}
+      }
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { registerRoute } from '../utils/APIRoutes';
 import Logo from '../assets/logo.svg';
 import styles from './register.module.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { apiRegister } from '../http/api';
 
 export function Register() {
   const navigate = useNavigate();
@@ -62,11 +61,7 @@ export function Register() {
     if (handleValidation()) {
       const { email, username, password } = values;
       // @ts-ignore
-      const { data } = await axios.post(registerRoute, {
-        username,
-        email,
-        password,
-      });
+      const data = await apiRegister({ username, email, password });
 
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
