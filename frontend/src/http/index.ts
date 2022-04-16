@@ -13,7 +13,7 @@ class Request {
 
     this.instance.interceptors.request.use(
       (c: AxiosRequestConfig) => {
-        console.log('request interceptors');
+        //console.log('request interceptors');
         return c;
       },
       (err: unknown) => err,
@@ -31,7 +31,7 @@ class Request {
 
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => {
-        console.log('response interceptors');
+        //console.log('response interceptors');
         return res.data;
       },
       (err: unknown) => err,
