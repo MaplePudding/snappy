@@ -10,12 +10,12 @@ export function Welcome() {
       JSON.parse(
         // @ts-ignore
         localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY),
-      ).username,
+      )?.username,
     );
   }, []);
   return (
     <div className={styles.container}>
-      <img src={Robot} alt="" />
+      <img src={Robot} alt="robot" />
       <h1>
         Welcome, <span>{userName}!</span>
       </h1>

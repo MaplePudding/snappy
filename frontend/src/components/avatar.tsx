@@ -5,11 +5,9 @@ import { toast, ToastContainer, ToastOptions } from 'react-toastify';
 import axios from 'axios';
 import styles from './avatar.module.css';
 import Loader from '../assets/loader.gif';
-import { setAvatarRoute } from '../utils/APIRoutes';
-import {apiSetAvatar} from "../http/api";
+import {apiGetAvatar, apiSetAvatar} from "../http/api";
 
 export function Avatar() {
-  const api = 'https://api.multiavatar.com/4645646';
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -63,7 +61,7 @@ export function Avatar() {
     const allRequest = []
 
     for(let i = 0; i < 4; ++i){
-      allRequest.push(axios.get(`${api}/${Math.round(Math.random() * 10)}`))
+      allRequest.push(apiGetAvatar(`${Math.round(Math.random() * 10)}`))
     }
 
     Promise.all(allRequest).then((arr) => {

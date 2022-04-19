@@ -67,6 +67,14 @@ export const apiGetAllUser = async (userId: string) => {
   return res;
 };
 
+export const apiGetAvatar = async (id: string) => {
+  const res = await RequestInstance.request<any>({
+    url: `https://api.multiavatar.com/4645646/${id}`,
+    method: 'GET',
+  });
+  return res;
+};
+
 export const apiSetAvatar = async (data: { userId: string; image: string }) => {
   const res = await RequestInstance.request<any>({
     url: `${setAvatarRoute}/${data.userId}`,
