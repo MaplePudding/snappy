@@ -16,7 +16,7 @@ const USERINFO =
 jest.mock('../../http/api', () => {
   return {
     __esModule: true,
-    apiGetAllUser: jest.fn(() => new Promise((resolve, reject) =>{
+    apiGetAllUser: jest.fn(() => { return new Promise((resolve, reject) =>{
           resolve([
             {
           avatarImage: '',
@@ -30,10 +30,10 @@ jest.mock('../../http/api', () => {
           username: 'admin2',
           _id: '625a65490b9d917e22b19b88',
         }
-      ]);
-    }),
-  };
-});
+      ])
+    })
+  })
+  }})
 
 describe('Chat Page Test', () => {
   test('Navigate To Login', async () =>{
