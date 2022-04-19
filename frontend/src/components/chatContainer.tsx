@@ -31,18 +31,6 @@ export function ChatContainer({
       });
   }, [currentChat]);
 
-  // useEffect(() => {
-  //  const getCurrentChat = () => {
-  //    if (currentChat) {
-  //      const temp = JSON.parse(
-  //        // @ts-ignore
-  //        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY),
-  //      )._id;
-  //      return temp;
-  //    }
-  //  };
-  //  getCurrentChat();
-  // }, [currentChat]);
   // @ts-ignore
   const handleSendMsg = (msg) => {
     const data = JSON.parse(
@@ -90,7 +78,7 @@ export function ChatContainer({
           <div className={styles.avatar}>
             <img
               src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
-              alt=""
+              alt="avatar"
             />
           </div>
           <div className={styles.username}>

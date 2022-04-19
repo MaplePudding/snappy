@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "eslint": "npx eslint '**' --fix"
   },
@@ -65,5 +65,8 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "prettier-eslint": "^13.0.0"
+  },
+  "jest": {
+    "resetMocks": false
   }
 }

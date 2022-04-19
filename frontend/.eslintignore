@@ -9,6 +9,8 @@ node_modules
 **/*.gif
 **/*.txt
 **/*.ico
+**/*.test.jsx
+coverage
 6
 build
 reportWebVitals.ts
