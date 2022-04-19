@@ -10,6 +10,17 @@ jest.mock('../../components/welcome', () => {
     }
 });
 
+jest.mock('socket.io-client', () =>{
+    return{
+        esModule: true,
+        io: jest.fn(() =>{
+            return{
+                emit: jest.fn(() => {}),
+                on: jest.fn(() =>{})
+            }})
+    }
+})
+
 const USERINFO =
   '{"username":"admin4","email":"admin4@gmail.com","password":"$2a$10$XLY9dqwgIIPID5YFl148Iu.vxWxtvRmhzMXjAUZ.7DelQKeoNWm8e","isAvatarImageSet":true,"avatarImage":"image","_id":"625ad8d30b9d917e22b19ba6","__v":0}';
 
